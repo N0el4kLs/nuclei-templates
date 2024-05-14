@@ -2,7 +2,7 @@ id: exposed-authentication-asmx
 
 info:
   name: Authentication.asmx - Detect
-  author: DhiyaneshDk
+  author: DhiyaneshDk, N0el4kLs
   severity: info
   description: Authentication Web Service authentication.asmx file was detected.
   reference:
@@ -19,13 +19,18 @@ http:
   - method: GET
     path:
       - "{{BaseURL}}/_vti_bin/Authentication.asmx?op=Mode"
+      - "{{BaseURL}}/_vti_bin/Authentication.asmx?WSDL"
+
+    stop-at-first-match: true
 
     matchers-condition: and
     matchers:
       - type: word
         words:
           - "Authentication Web Service"
+          - "sharepoint"
         part: body
+        condition: or
 
       - type: status
         status:
